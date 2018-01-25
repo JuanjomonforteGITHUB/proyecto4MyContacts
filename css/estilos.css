@@ -106,7 +106,7 @@ section{
 }
 .wrapper-login .viewport-login .tabs {
     overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
     position: relative;
     height: 55px;
 }
@@ -145,7 +145,7 @@ section{
 .wrapper-login .viewport-login .forms {
     position: relative;
     overflow: hidden;
-    height: 373px;
+    height: 450px;
 }
 .wrapper-login .viewport-login .forms > form {
     display: block;

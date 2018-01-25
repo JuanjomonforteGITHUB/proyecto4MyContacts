@@ -1,3 +1,3 @@
 <!-- QUERY PARA VALIDAR LOGIN DEL USUARIO -->
 <?php
-	include("conexion.php");
+	include("conexion.proc.php");
