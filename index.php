@@ -1,3 +1,19 @@
+<?php
+  session_start();
+  if(isset($_SESSION['username'])){
+    header("location: principal.php");
+  } else if(isset($_SESSION['error-saltologin'])){
+    $errorsaltologin = $_SESSION['error-saltologin'];
+    session_destroy();
+  }
+  if(isset($_SESSION['erroruser'])){
+    $erroruser = $_SESSION['erroruser'];
+    session_destroy();
+  } elseif(isset($_SESSION['errorpassword'])) {
+    $errorpassword = $_SESSION['errorpassword'];
+    session_destroy();
+  }
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -9,7 +25,6 @@
 </head>
 
 <body>
-  
 
 <div class="wrapper-login">
         <div class='start'></div>
@@ -25,11 +40,28 @@
                     <!-- Start Form Login  -->
                     <form class="form-login" method="post" action="login.proc.php">
                         <div class="form-group">
+                            <div class="error">
+                            <?php
+                            if(isset($errorsaltologin)){
+                            echo "<b>".$errorsaltologin ."</b><br/>";
+                            }
+                            if(isset($erroruser)){
+                            echo "<b>".$erroruser ."</b><br/>";
+                            }
+                            ?>
+                            </div>
                             <span class="place">Usuari</span>
                             <input type="text" class="input-lg" name="usuari" autocomplete="off">
                             <span class="icon"><i class="fa fa-user"></i></span>
                         </div>
                         <div class="form-group">
+                            <div class="error">
+                                <?php
+                                    if(isset($errorpassword)){
+                                        echo "<b>". $errorpassword ."</b><br/>";
+                                    }
+                                ?>
+                            </div>
                             <span class="place">Contrasenya</span>
                             <input type="password" class="input-lg" name="contrasenya" autocomplete="new-password">
                             <span class="icon"><i class="fa fa-lock"></i></span>
@@ -37,37 +69,36 @@
                         <input type="submit" class="btn btn-block  btn-lg" value="Login">
                     </form>
 
-
                     <!-- Start Form Signup  -->
                     <form class="form-signup" method="post" action="registre.proc.php">
                     	<div class="form-group">
                             <span class="place">Nom usuari</span>
-                            <input type="text" class="input-lg" name="realname" autocomplete="off">
+                            <input type="text" class="input-lg" name="usernameUsuari" autocomplete="off">
                             <span class="icon"><i class="fa fa-user"></i></span>
                         </div>
                         <div class="form-group">
                             <span class="place">Nom</span>
-                            <input type="text" class="input-lg" name="realname" autocomplete="off">
+                            <input type="text" class="input-lg" name="nomUsuari" autocomplete="off">
                             <span class="icon"><i class="fa fa-user"></i></span>
                         </div>
                         <div class="form-group">
                             <span class="place">Cognom</span>
-                            <input type="password" class="input-lg eye-pass" name="rpass" autocomplete="new-password">
+                            <input type="password" class="input-lg eye-pass" name="cognomsUsuari" autocomplete="new-password">
                             <span class="icon eye-btn"><i class="fa fa-user"></i></span>
                         </div>
                         <div class="form-group">
                             <span class="place">Direcció de correu</span>
-                            <input type="text" class="input-lg" name="nick" autocomplete="off">
+                            <input type="text" class="input-lg" name="emailUsuari" autocomplete="off">
                             <span class="icon"><i class="fa fa-envelope"></i></span>
                         </div>
                         <div class="form-group">
                             <span class="place">Contrasenya</span>
-                            <input type="password" class="input-lg eye-pass" name="pass" autocomplete="new-password">
+                            <input type="password" class="input-lg eye-pass" name="contraUsuari" autocomplete="new-password">
                             <span class="icon eye-btn"><i class="fa fa-key"></i></span>
                         </div>
                         <div class="form-group">
                             <span class="place">Repetir contrasenya</span>
-                            <input type="password" class="input-lg eye-pass" name="rpass" autocomplete="new-password">
+                            <input type="password" class="input-lg eye-pass" name="contraUsuari2" autocomplete="new-password">
                             <span class="icon eye-btn"><i class="fa fa-key"></i></span>
                         </div>
                         <input type="submit" class="btn btn-block  btn-lg" value="Registrar">	
