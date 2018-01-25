@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 24, 2018 at 08:37 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-01-2018 a las 18:21:15
+-- Versión del servidor: 10.1.26-MariaDB
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bd_projecte4`
+-- Base de datos: `bd_projecte4`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_contactes`
+-- Estructura de tabla para la tabla `tbl_contactes`
 --
 
 CREATE TABLE `tbl_contactes` (
@@ -49,11 +49,12 @@ CREATE TABLE `tbl_contactes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_usuari`
+-- Estructura de tabla para la tabla `tbl_usuari`
 --
 
 CREATE TABLE `tbl_usuari` (
   `idUsuari` int(11) NOT NULL,
+  `usernameUsuari` varchar(25) NOT NULL,
   `nomUsuari` varchar(25) NOT NULL,
   `cognomsUsuari` varchar(50) NOT NULL,
   `emailUsuari` varchar(100) NOT NULL,
@@ -61,33 +62,33 @@ CREATE TABLE `tbl_usuari` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `tbl_contactes`
+-- Indices de la tabla `tbl_contactes`
 --
 ALTER TABLE `tbl_contactes`
   ADD PRIMARY KEY (`idContacte`);
 
 --
--- Indexes for table `tbl_usuari`
+-- Indices de la tabla `tbl_usuari`
 --
 ALTER TABLE `tbl_usuari`
   ADD PRIMARY KEY (`idUsuari`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `tbl_contactes`
+-- AUTO_INCREMENT de la tabla `tbl_contactes`
 --
 ALTER TABLE `tbl_contactes`
   MODIFY `idContacte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_usuari`
+-- AUTO_INCREMENT de la tabla `tbl_usuari`
 --
 ALTER TABLE `tbl_usuari`
   MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT;
