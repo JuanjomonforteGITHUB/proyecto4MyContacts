@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2018 a las 16:15:14
+-- Tiempo de generación: 26-01-2018 a las 19:58:55
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -38,12 +38,12 @@ CREATE TABLE `tbl_contactes` (
   `ubicacio1Contacte` varchar(150) DEFAULT NULL,
   `tipusUbicacio2` varchar(15) DEFAULT NULL,
   `ubicacio2Contacte` varchar(150) DEFAULT NULL,
-  `imatgeContacte` varchar(50) NOT NULL,
-  `direccioContacte` varchar(50) NOT NULL,
-  `poblacioContacte` varchar(25) NOT NULL,
-  `provinciaContacte` varchar(25) NOT NULL,
-  `cpContacte` varchar(10) NOT NULL,
-  `paisContacte` varchar(15) NOT NULL
+  `imatgeContacte` varchar(50) DEFAULT NULL,
+  `direccioContacte` varchar(50) DEFAULT NULL,
+  `poblacioContacte` varchar(25) DEFAULT NULL,
+  `provinciaContacte` varchar(25) DEFAULT NULL,
+  `cpContacte` varchar(10) DEFAULT NULL,
+  `paisContacte` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -66,7 +66,8 @@ CREATE TABLE `tbl_usuari` (
 --
 
 INSERT INTO `tbl_usuari` (`idUsuari`, `usernameUsuari`, `nomUsuari`, `cognomsUsuari`, `emailUsuari`, `contraUsuari`) VALUES
-(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055');
+(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(6, 'daznar', 'David', '', '', '81dc9bdb52d04dc20036dbd8313ed055');
 
 --
 -- Índices para tablas volcadas
@@ -98,7 +99,7 @@ ALTER TABLE `tbl_contactes`
 -- AUTO_INCREMENT de la tabla `tbl_usuari`
 --
 ALTER TABLE `tbl_usuari`
-  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

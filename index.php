@@ -70,7 +70,7 @@
                     </form>
 
                     <!-- Start Form Signup  -->
-                    <form class="form-signup" method="post" action="registre.proc.php">
+                    <form class="form-signup" method="post" action="registreUsuari.proc.php">
                     	<div class="form-group">
                             <span class="place">Nom usuari</span>
                             <input type="text" class="input-lg" name="usernameUsuari" autocomplete="off">
@@ -112,9 +112,7 @@
             </div>
         </div>
     </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js'></script>
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js'></script>
     <script  src="js/funciones.js"></script>
-
 </body>
 </html>

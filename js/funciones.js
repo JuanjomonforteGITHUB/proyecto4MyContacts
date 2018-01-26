@@ -60,3 +60,9 @@ setTimeout(function(){
 setTimeout(function(){
     $(".profile").removeClass("pre-enter on-enter");
 }, 3000);
+
+/***********************************************************************************/
+
+function funeliminarusuari() {
+    confirm("Estas segur que vols donar-te de baixa de MyContacts?");
+}
