@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-01-2018 a las 18:21:15
+-- Tiempo de generación: 26-01-2018 a las 16:15:14
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -32,12 +32,12 @@ CREATE TABLE `tbl_contactes` (
   `idContacte` int(11) NOT NULL,
   `nomContacte` varchar(20) NOT NULL,
   `cognomsContacte` varchar(50) NOT NULL,
-  `emailContacte` varchar(60) NOT NULL,
+  `emailContacte` varchar(60) DEFAULT NULL,
   `telefonContacte` varchar(9) NOT NULL,
-  `tipusUbicacio1` varchar(15) NOT NULL,
-  `ubicacio1Contacte` varchar(150) NOT NULL,
-  `tipusUbicacio2` varchar(15) NOT NULL,
-  `ubicacio2Contacte` varchar(150) NOT NULL,
+  `tipusUbicacio1` varchar(15) DEFAULT NULL,
+  `ubicacio1Contacte` varchar(150) DEFAULT NULL,
+  `tipusUbicacio2` varchar(15) DEFAULT NULL,
+  `ubicacio2Contacte` varchar(150) DEFAULT NULL,
   `imatgeContacte` varchar(50) NOT NULL,
   `direccioContacte` varchar(50) NOT NULL,
   `poblacioContacte` varchar(25) NOT NULL,
@@ -58,8 +58,15 @@ CREATE TABLE `tbl_usuari` (
   `nomUsuari` varchar(25) NOT NULL,
   `cognomsUsuari` varchar(50) NOT NULL,
   `emailUsuari` varchar(100) NOT NULL,
-  `contraUsuari` varchar(25) NOT NULL
+  `contraUsuari` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbl_usuari`
+--
+
+INSERT INTO `tbl_usuari` (`idUsuari`, `usernameUsuari`, `nomUsuari`, `cognomsUsuari`, `emailUsuari`, `contraUsuari`) VALUES
+(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055');
 
 --
 -- Índices para tablas volcadas
@@ -91,7 +98,7 @@ ALTER TABLE `tbl_contactes`
 -- AUTO_INCREMENT de la tabla `tbl_usuari`
 --
 ALTER TABLE `tbl_usuari`
-  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

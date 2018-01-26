@@ -38,7 +38,7 @@
                 </header>
                 <div class="forms">
                     <!-- Start Form Login  -->
-                    <form class="form-login" method="post" action="login.proc.php">
+                    <form class="form-login" method="POST" action="login.proc.php">
                         <div class="form-group">
                             <div class="error">
                             <?php
