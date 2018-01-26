@@ -1,21 +1,21 @@
-<?php
-	session_start();
-	include("conexion.proc.php");
-    if(isset($_SESSION['username'])){
-      // echo "Bienvenido " . $_SESSION['id'] . "<br/>";
-      // echo "Nivel de usuario: " . $_SESSION['nivel'] . "<br/>";
-    } else {
-      $_SESSION['error-saltologin']= "No te saltes el login!!";
-      header("location: index.php");
-    }
-?>
+	<?php
+		include("conexion.proc.php");
+	?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
 <body>
-	<?php echo $_SESSION['username']; ?>
+
+	<a href="eliminarContacte">Eliminar contacte</a><br>
+	<a href="eliminarUsuari">Eliminar usuari</a><br>
+	<a href="updateUsuari">Modificar usuari</a><br>
+	<a href="updateContacte">Modificar contacte</a><br>
+	<a href="insertContacte">Insertar contacte</a><br>
+
+	
+
 </body>
 </html>
 
