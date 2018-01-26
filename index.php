@@ -9,8 +9,8 @@
   if(isset($_SESSION['erroruser'])){
     $erroruser = $_SESSION['erroruser'];
     session_destroy();
-  } elseif(isset($_SESSION['errorpassword'])) {
-    $errorpassword = $_SESSION['errorpassword'];
+  } elseif(isset($_SESSION['errorLogin'])) {
+    $errorLogin = $_SESSION['errorLogin'];
     session_destroy();
   }
 ?>
@@ -57,8 +57,8 @@
                         <div class="form-group">
                             <div class="error">
                                 <?php
-                                    if(isset($errorpassword)){
-                                        echo "<b>". $errorpassword ."</b><br/>";
+                                    if(isset($errorLogin)){
+                                        echo "<b>". $errorLogin ."</b><br/>";
                                     }
                                 ?>
                             </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group">
                             <span class="place">Cognom</span>
-                            <input type="password" class="input-lg eye-pass" name="cognomsUsuari" autocomplete="new-password">
+                            <input type="text" class="input-lg eye-pass" name="cognomsUsuari" autocomplete="new-password">
                             <span class="icon eye-btn"><i class="fa fa-user"></i></span>
                         </div>
                         <div class="form-group">
