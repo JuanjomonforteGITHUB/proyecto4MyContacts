@@ -59,38 +59,24 @@
 			$updateuser .= ",contraUsuari='$password_encriptado'";
 		}
 
-
-		if(($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) {
-		$nombrefinal = uniqid("")."-".$_FILES["file"]["name"];
-		$move = "imgsubidas/";
-		if(move_uploaded_file($_FILES["file"]["tmp_name"], $move.$nombrefinal)) {
-			$timezone= +1;
-			$fecha_subida_objeto = gmdate("Y/m/j H:i:s",time() + 3600 * ($timezone+date("")));
-			$insert = 'INSERT INTO `imagen`(`nombre_imagen`, `Fecha_subida`) VALUES ("'.$nombrefinal.'","'.$fecha_subida_objeto.'")';
-			$query=mysqli_query($conexion, $insert);
-			header('location: index.php');
-
+		if(isset($_FILES["imatgeUsuari"])){
+			if(($_FILES["imatgeUsuari"]["type"] == "image/png") || ($_FILES["imatgeUsuari"]["type"] == "image/jpg") || ($_FILES["imatgeUsuari"]["type"] == "image/jpeg")) {
+			$nombrefinal = uniqid("")."-".$_FILES["imatgeUsuari"]["name"];
+			$move = "img/";
+			if(move_uploaded_file($_FILES["imatgeUsuari"]["tmp_name"], $move.$nombrefinal)) {
+				
+				$insert = "INSERT INTO `tbl_usuari`(`imatgeUsuari`) VALUES ('" . $nombrefinal ."')";
+				$query=mysqli_query($conexion, $insert);
+				header('location: index.php');
+				} else {
+					$_SESSION['errorsubidafichero'] = 'ERROR!!! EL FICHERO NO SE HA PODIDO SUBIR';
+				}  
+			} else {
+				$_SESSION['errortipofichero'] = 'NO PUEDES SUBIR ESTE TIPO DE FICHERO. SOLO .jpg, .jpeg o .png';
+			}
 		} else {
-			$_SESSION['errorsubidafichero'] = 'ERROR!!! EL FICHERO NO SE HA PODIDO SUBIR';
+			die("foto vacia");
 		}
-	    /*
-	    
-          echo $_FILES["file"]['name']."<br>";
-          echo $_FILES["file"]['tmp_name']."<br>";
-          echo $_FILES["file"]['size']."<br>";
-          echo $_FILES['file']['error']."<br>";
-          ;
-
-		*/
-		} else {
-			$_SESSION['errortipofichero'] = 'NO PUEDES SUBIR ESTE TIPO DE FICHERO. SOLO .jpg, .jpeg o .png';
-		}
-	}
-
-
-
-
-
 		
 
 		$usrantiguo = $_REQUEST['usernameUsuariold'];

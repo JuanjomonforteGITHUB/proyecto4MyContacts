@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2018 a las 18:26:58
+-- Tiempo de generación: 29-01-2018 a las 20:05:48
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_contactes` (
   `idContacte` int(11) NOT NULL,
+  `idUsuariContacte` varchar(10000) NOT NULL,
   `nomContacte` varchar(20) NOT NULL,
   `cognomsContacte` varchar(50) NOT NULL,
   `emailContacte` varchar(60) DEFAULT NULL,
@@ -45,6 +46,13 @@ CREATE TABLE `tbl_contactes` (
   `cpContacte` varchar(10) DEFAULT NULL,
   `paisContacte` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbl_contactes`
+--
+
+INSERT INTO `tbl_contactes` (`idContacte`, `idUsuariContacte`, `nomContacte`, `cognomsContacte`, `emailContacte`, `telefonContacte`, `tipusUbicacio1`, `ubicacio1Contacte`, `tipusUbicacio2`, `ubicacio2Contacte`, `imatgeContacte`, `direccioContacte`, `poblacioContacte`, `provinciaContacte`, `cpContacte`, `paisContacte`) VALUES
+(1, '', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ ALTER TABLE `tbl_usuari`
 -- AUTO_INCREMENT de la tabla `tbl_contactes`
 --
 ALTER TABLE `tbl_contactes`
-  MODIFY `idContacte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idContacte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_usuari`

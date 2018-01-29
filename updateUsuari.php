@@ -19,16 +19,16 @@
     }
 	?>
 	<h1>Modificar usuario</h1>
-	<form action="updateUsuari.proc.php" method="POST">
+	<form action="updateUsuari.proc.php" method="POST" enctype="multipart/form-data">
 		<?php
 		$queryusuari = "SELECT * FROM `tbl_usuari` WHERE `usernameUsuari`='$nomUsuari'";
 		$modificarusuari=mysqli_query($conexion, $queryusuari);
 		if (mysqli_num_rows($modificarusuari)>0) {
 			while ($resultadouser=mysqli_fetch_array($modificarusuari)) { ?>
-				Nom Usuari*: <input type="text" name="usernameUsuarinew" required="" value="<?php echo $resultadouser['usernameUsuari']; ?>" /><br/><br/>
+				Nom Usuari: <input type="text" name="usernameUsuarinew" required="" value="<?php echo $resultadouser['usernameUsuari']; ?>" /><br/><br/>
 				<input type="hidden" name="usernameUsuariold" value="<?php echo $resultadouser['usernameUsuari']; ?>" />
 				
-				Nom: <input type="text" name="nomUsuarinew" required="" value="<?php echo $resultadouser['nomUsuari'];?>" /><br/><br/>
+				Nom: <input type="text" name="nomUsuarinew" value="<?php echo $resultadouser['nomUsuari'];?>" /><br/><br/>
 				<input type="hidden" name="nomUsuariold" value="<?php echo $resultadouser['nomUsuari'];?>">
 				
 				Cognoms: <input type="text" name="cognomsUsuarinew" value="<?php echo $resultadouser['cognomsUsuari'];?>"/><br/><br/>
@@ -37,13 +37,11 @@
 				Email: <input type="text" name="emailUsuarinew" value="<?php echo $resultadouser['emailUsuari'];?>"/><br/><br/>
 				<input type="hidden" name="emailUsuariold" value="<?php echo $resultadouser['emailUsuari'];?>"/>
 
-				Contraseña*: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
+				Contraseña: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
 				<input type="hidden" name="contraUsuariold" value="<?php echo $resultadouser['contraUsuari']; ?>" />
 				
-				Imatge de perfil: <br />
-				<?php echo "<img src='img/$resultadouser[imatgeUsuari]'/>"; ?>
+				Imatge de perfil: <input type="file" name="imatgeUsuari">
 				<br /><br />
-				<input type="file" name="imatgeUsuari">
 				<input type="submit" value="Desar canvis"/>
 				<a href="principal.php"><input type="button" value="Tornar"></a>
 			<?php }
