@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2018 a las 19:58:55
+-- Tiempo de generación: 29-01-2018 a las 18:26:58
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -58,16 +58,19 @@ CREATE TABLE `tbl_usuari` (
   `nomUsuari` varchar(25) NOT NULL,
   `cognomsUsuari` varchar(50) NOT NULL,
   `emailUsuari` varchar(100) NOT NULL,
-  `contraUsuari` varchar(50) NOT NULL
+  `contraUsuari` varchar(50) NOT NULL,
+  `imatgeUsuari` varchar(100) DEFAULT 'perfildefecto.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_usuari`
 --
 
-INSERT INTO `tbl_usuari` (`idUsuari`, `usernameUsuari`, `nomUsuari`, `cognomsUsuari`, `emailUsuari`, `contraUsuari`) VALUES
-(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
-(6, 'daznar', 'David', '', '', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `tbl_usuari` (`idUsuari`, `usernameUsuari`, `nomUsuari`, `cognomsUsuari`, `emailUsuari`, `contraUsuari`, `imatgeUsuari`) VALUES
+(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
+(6, 'davidAznar', 'David', '', '', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
+(7, 'daznar2', 'david', 'aznar dalmau', 'dabsvxjagj@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
+(9, 'ntapia', '', '', '', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'perfildefecto.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -99,7 +102,7 @@ ALTER TABLE `tbl_contactes`
 -- AUTO_INCREMENT de la tabla `tbl_usuari`
 --
 ALTER TABLE `tbl_usuari`
-  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUsuari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
