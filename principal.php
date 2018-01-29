@@ -17,7 +17,16 @@
 	<script src="js/funciones.js"></script>
 </head>
 <body>
-	<?php echo $_SESSION['username']; ?>
+	<?php echo $_SESSION['username'];
+		$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
+		echo $mostrarimagen;
+		$query = mysqli_query($conexion, $mostrarimagen);
+	    if (mysqli_num_rows($query)>0) {
+			while ($fotosSubidas=mysqli_fetch_array($query)) {
+				echo "<img src='img/$fotosSubidas[imatgeUsuari]'/>";
+			}
+		}
+	?>
 	<br />
 	<a href="eliminarContacte.proc.php">Eliminar contacte</a><br>
 	<a href="eliminarUsuari.proc.php" onclick="funeliminarusuari()">Eliminar usuari</a><br>
