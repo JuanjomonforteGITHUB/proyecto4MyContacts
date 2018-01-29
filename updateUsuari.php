@@ -40,6 +40,10 @@
 				Contraseña*: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
 				<input type="hidden" name="contraUsuariold" value="<?php echo $resultadouser['contraUsuari']; ?>" />
 				
+				Imatge de perfil: <br />
+				<?php echo "<img src='img/$resultadouser[imatgeUsuari]'/>"; ?>
+				<br /><br />
+				<input type="file" name="imatgeUsuari">
 				<input type="submit" value="Desar canvis"/>
 				<a href="principal.php"><input type="button" value="Tornar"></a>
 			<?php }
