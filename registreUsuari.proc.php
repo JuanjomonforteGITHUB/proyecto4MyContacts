@@ -1,5 +1,6 @@
 <!-- QUERY CREAR REGISTRO USUARIO -->
 <?php
+	session_start();
 	include('conexion.proc.php');
 
 	// POSAR EN VARIABLES ELS VALOR ENVIATS PER URL
@@ -18,15 +19,16 @@
 		$_SESSION['errorUsername'] = "El nom d'usuari ja existeix!";
 		// echo $_SESSION['errorUsername'];
 		header("location: index.php");
-	}else{
+	} else {
 		// COMPROBAR CAMPS CONTRASENYES
 		if ($contraUsuari == $contraUsuari2) {
 			$password = md5($contraUsuari);
 			$sql = "INSERT INTO tbl_usuari (usernameUsuari, nomUsuari, cognomsUsuari, emailUsuari, contraUsuari) VALUES ('$usernameUsuari', '$nomUsuari', '$cognomsUsuari', '$emailUsuari', '$password')";
-			$registroSql = mysqli_query($conexion, $sql);
+			mysqli_query($conexion, $sql);
 			//echo $sql;
-			header("location: index.php");
-		}else{
+			$_SESSION['username'] = $usernameUsuari;
+			header("location: principal.php");
+		} else {
 			$_SESSION['errorContra'] = "Les contrasenyes no coincideixen!";
 			// echo $_SESSION['errorContra'];
 			header("location: index.php");
