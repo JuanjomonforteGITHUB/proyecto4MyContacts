@@ -1,6 +1,6 @@
 <?php
-	include("conexion.proc.php");
 	session_start();
+	include("conexion.proc.php");
     if(isset($_SESSION['username'])){
       // echo "Bienvenido " . $_SESSION['id'] . "<br/>";
       // echo "Nivel de usuario: " . $_SESSION['nivel'] . "<br/>";

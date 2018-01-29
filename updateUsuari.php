@@ -13,6 +13,11 @@
 	<meta charset="utf-8">
 </head>
 <body>
+	<?php
+	if(isset($_SESSION['ErrorUserRepe'])){
+    	echo "<b>".$_SESSION['ErrorUserRepe'] ."</b><br/>";
+    }
+	?>
 	<h1>Modificar usuario</h1>
 	<form action="updateUsuari.proc.php" method="POST">
 		<?php
@@ -35,7 +40,7 @@
 				Contraseña*: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
 				<input type="hidden" name="contraUsuariold" value="<?php echo $resultadouser['contraUsuari']; ?>" />
 				
-				<input type="submit" value="Aceptar"/>
+				<input type="submit" value="Desar canvis"/>
 				<a href="principal.php"><input type="button" value="Tornar"></a>
 			<?php }
 		} ?>
