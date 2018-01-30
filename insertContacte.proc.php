@@ -23,9 +23,10 @@
 	$provinciaContacte = $_REQUEST['provinciaContacte'];
 	$cpContacte = $_REQUEST['cpContacte'];
 	$paisContacte = $_REQUEST['paisContacte'];
+	$idUsuariContacte = $_SESSION['idUsuari'];
 
 	// CONSULTA SQL INSERTAR DADES CONTACTES
-	$sql = "INSERT INTO tbl_contactes (nomContacte,cognomsContacte,emailContacte,telefonContacte,tipusUbicacio1,ubicacio1Contacte,tipusUbicacio2,ubicacio2Contacte,imatgeContacte,direccioContacte,poblacioContacte,provinciaContacte,cpContacte,paisContacte) VALUES ('$nomContacte','$cognomsContacte','$emailContacte','$telefonContacte','$tipusUbicacio1','$ubicacio1Contacte','$tipusUbicacio2','$ubicacio2Contacte','$imatgeContacte','$direccioContacte','$poblacioContacte','$provinciaContacte','$cpContacte','$paisContacte')";
+	$sql = "INSERT INTO tbl_contactes (idUsuariContacte,nomContacte,cognomsContacte,emailContacte,telefonContacte,tipusUbicacio1,ubicacio1Contacte,tipusUbicacio2,ubicacio2Contacte,imatgeContacte,direccioContacte,poblacioContacte,provinciaContacte,cpContacte,paisContacte) VALUES ('$idUsuariContacte','$nomContacte','$cognomsContacte','$emailContacte','$telefonContacte','$tipusUbicacio1','$ubicacio1Contacte','$tipusUbicacio2','$ubicacio2Contacte','$imatgeContacte','$direccioContacte','$poblacioContacte','$provinciaContacte','$cpContacte','$paisContacte')";
 
 	$sqlInsertar = mysqli_query($conexion, $sql);
 	// echo $sql;

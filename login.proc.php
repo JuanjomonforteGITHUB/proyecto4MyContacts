@@ -33,7 +33,8 @@
 		$login=mysqli_query($conexion, $queryusrpaswdd);
 		//Si la consulta devuelve más de 0 registros, es que el usuario existe, por lo tanto, iremos a la página principal de la intranet
 		if(mysqli_num_rows($login)>0){
-		//Comprovamos que el usuario haya introducido bien la contraseña, si no es correcta nos lleva a index.php
+			$resultadouser=mysqli_fetch_array($modificarusuari);
+			$_SESSION['userid'] = $resultadouser['idUsuari'];
 			//Asignamos las sesiones
 			$_SESSION['loggedin']=true;
 			//Nombre de usuario

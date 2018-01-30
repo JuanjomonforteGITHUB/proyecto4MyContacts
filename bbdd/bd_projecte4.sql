@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2018 a las 20:05:48
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 30-01-2018 a las 15:09:24
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -52,7 +52,7 @@ CREATE TABLE `tbl_contactes` (
 --
 
 INSERT INTO `tbl_contactes` (`idContacte`, `idUsuariContacte`, `nomContacte`, `cognomsContacte`, `emailContacte`, `telefonContacte`, `tipusUbicacio1`, `ubicacio1Contacte`, `tipusUbicacio2`, `ubicacio2Contacte`, `imatgeContacte`, `direccioContacte`, `poblacioContacte`, `provinciaContacte`, `cpContacte`, `paisContacte`) VALUES
-(1, '', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as');
+(1, '1', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ CREATE TABLE `tbl_usuari` (
 --
 
 INSERT INTO `tbl_usuari` (`idUsuari`, `usernameUsuari`, `nomUsuari`, `cognomsUsuari`, `emailUsuari`, `contraUsuari`, `imatgeUsuari`) VALUES
-(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
+(1, 'jmonforte', 'Juanjo', 'Monforte', 'juanjomonforte@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '5a6fa2547ccc2-fotodni.jpg'),
 (6, 'davidAznar', 'David', '', '', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
 (7, 'daznar2', 'david', 'aznar dalmau', 'dabsvxjagj@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'perfildefecto.jpg'),
 (9, 'ntapia', '', '', '', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'perfildefecto.jpg');

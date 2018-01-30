@@ -14,8 +14,31 @@
 </head>
 <body>
 	<?php
+	if(isset($_SESSION['errorsubidafichero'])){
+		
+		echo "<script>			
+			alert('error " . $_SESSION['errorsubidafichero'] . "')
+		</script>";
+		unset($_SESSION['errorsubidafichero']);
+	}
+	if(isset($_SESSION['errortipofichero'])){
+		
+		echo "<script>			
+			alert('error " . $_SESSION['errortipofichero'] . "')
+		</script>";
+		unset($_SESSION['errortipofichero']);
+	}
 	if(isset($_SESSION['ErrorUserRepe'])){
-    	echo "<b>".$_SESSION['ErrorUserRepe'] ."</b><br/>";
+		echo "<script>			
+			alert('error " . $_SESSION['ErrorUserRepe'] . "')
+		</script>";
+		unset($_SESSION['ErrorUserRepe']);
+    }
+    if(isset($_SESSION['errorContra'])){
+		echo "<script>			
+			alert('error " . $_SESSION['errorContra'] . "')
+		</script>";
+		unset($_SESSION['errorContra']);
     }
 	?>
 	<h1>Modificar usuario</h1>
@@ -37,7 +60,8 @@
 				Email: <input type="text" name="emailUsuarinew" value="<?php echo $resultadouser['emailUsuari'];?>"/><br/><br/>
 				<input type="hidden" name="emailUsuariold" value="<?php echo $resultadouser['emailUsuari'];?>"/>
 
-				Contraseña: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
+				Contrasenya: <input type="password" name="contraUsuarinew" placeholder="***********" ;?><br/><br/>
+				Repeteix contrasenya: <input type="password" name="contraUsuarinew2" placeholder="***********" ;?><br/><br/>
 				<input type="hidden" name="contraUsuariold" value="<?php echo $resultadouser['contraUsuari']; ?>" />
 				
 				Imatge de perfil: <input type="file" name="imatgeUsuari">
