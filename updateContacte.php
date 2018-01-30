@@ -72,6 +72,7 @@
 			}
 		}
 		echo "</form>";
-	?>		
+	?>	
+	<a href="principal.php"><input type="button" value="Tornar"></a>	
 </body>
 </html>

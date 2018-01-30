@@ -133,7 +133,7 @@
 	                </div>
 
 	                <div class="card__cta">
-	                    <a href="" class="card__cta-item btn btn-primary">
+	                    <a href="updateContacte.php?idContacte=3" class="card__cta-item btn btn-primary">
 	                        <i class="fa fa-pencil card__cta-icon"></i>
 	                    </a>
 
