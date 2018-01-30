@@ -21,58 +21,109 @@
 		// echo $sql;
 		// die();
 
-		echo "<form action='updateContacte.proc.php' method='POST'>";
+		echo "<form action='updateContacte.proc.php' method='POST' enctype='multipart/form-data'>";
 		if(mysqli_num_rows($sqlUpdate)>0){	
-			while($row = mysqli_fetch_array($sqlUpdate)){
-				echo "<label>nomContacte</label>";
-				echo "<input type='text' name='nomContacte' value='" . $row['nomContacte'] . "'><br>";
+			while($row = mysqli_fetch_array($sqlUpdate)){ ?>
+				<label>Nom contacte</label>
+				<input type='text' name='nomContactenew' value='<?php echo $row['nomContacte'];?>'><br>
+				<input type="hidden" name="nomContacteold" value="<?php echo $row['nomContacte']; ?>" />
 
-				echo "<label>cognomsContacte</label>";
-				echo "<input type='text' name='cognomsContacte' value='" . $row['cognomsContacte'] . "'><br>";
+				<label>Cognoms contacte</label>
+				<input type='text' name='cognomsContactenew' value='<?php echo $row['cognomsContacte'];?>'><br>
+				<input type="hidden" name="cognomsContacteold" value="<?php echo $row['nomContacte']; ?>" />
 
-				echo "<label>emailContacte</label>";
-				echo "<input type='text' name='emailContacte' value='" . $row['emailContacte'] . "'><br>";
+				<label>Telefon contacte</label>
+				<input type='text' name='telefonContactenew' value='<?php echo $row['telefonContacte'];?>'><br>
+				<input type="hidden" name="telefonContacteold" value="<?php echo $row['telefonContacte']; ?>" />
 
-				echo "<label>telefonContacte</label>";
-				echo "<input type='text' name='telefonContacte' value='" . $row['telefonContacte'] . "'><br>";
+				<label>Email contacte</label>
+				<input type='text' name='emailContacte' value='<?php echo $row['emailContacte'];?>'><br>
 
-				echo "<label>tipusUbicacio1</label>";
-				echo "<input type='text' name='tipusUbicacio1' value='" . $row['tipusUbicacio1'] . "'><br>";
+				<label>Imatge contacte</label>
+				<input type="file" name="imatgeContacte">
 
-				echo "<label>tipusUbicacio2</label>";
-				echo "<input type='text' name='tipusUbicacio2' value='" . $row['tipusUbicacio2'] . "'><br>";
+				Tipus Ubicacio 1 : 
+				<select name="tipusubicacio1">
+					<option value="casa">Casa</option>
+				</select><br>
 
-				echo "<label>ubicacio1Contacte</label>";
-				echo "<input type='text' name='ubicacio1Contacte' value='" . $row['ubicacio1Contacte'] . "'><br>";
+				<label>Direccio contacte 1</label>
+				<input type='text' name='direccioContacte1' value='<?php echo $row['direccioContacte1'];?>'><br>
 
-				echo "<label>ubicacio2Contacte</label>";
-				echo "<input type='text' name='ubicacio2Contacte' value='" . $row['ubicacio2Contacte'] . "'><br>";
+				<label>Poblacio contacte 1</label>
+				<input type='text' name='poblacioContacte1' value='<?php echo $row['poblacioContacte1'];?>'><br>
 
-				echo "<label>direccioContacte</label>";
-				echo "<input type='text' name='direccioContacte' value='" . $row['direccioContacte'] . "'><br>";
+				<label>Provincia contacte 1</label>
+				<input type='text' name='provinciaContacte1' value='<?php echo $row['provinciaContacte1'];?>'><br>
 
-				echo "<label>poblacioContacte</label>";
-				echo "<input type='text' name='poblacioContacte' value='" . $row['poblacioContacte'] . "'><br>";
+				<label>Codi Postal contacte 1</label>
+				<input type='text' name='cpContacte1' value='<?php echo $row['cpContacte1'];?>'><br>
 
-				echo "<label>provinciaContacte</label>";
-				echo "<input type='text' name='provinciaContacte' value='" . $row['provinciaContacte'] . "'><br>";
+				<label>Pais contacte 1</label>
+				<input type='text' name='paisContacte1' value='<?php echo $row['paisContacte1'];?>'><br>
 
-				echo "<label>cpContacte</label>";
-				echo "<input type='text' name='cpContacte' value='" . $row['cpContacte'] . "'><br>";
+				
 
-				echo "<label>paisContacte</label>";
-				echo "<input type='text' name='paisContacte' value='" . $row['paisContacte'] . "'><br>";
+				Tipus Ubicacio 2 : <select name="tipusubicacio2"> 
+					<?php 
+					if ($row['tipusUbicacio2'] == 'feina') { ?>
+						<option value="feina" selected>Feina</option>
+					<?php } else { ?>
+						<option value="feina">Feina</option>	
+					<?php }
+					if ($row['tipusUbicacio2'] == 'escola') { ?>
+						<option value="escola" selected>Escola</option>
+					<?php } else { ?>
+						<option value="escola">Escola</option>
+					<?php }
+					if ($row['tipusUbicacio2'] == 'altres') { ?>
+						<option value="altres" selected>Altres</option>
+					<?php } else { ?>
+						<option value="altres">Altres</option>	
+					<?php } ?>
+				</select><br>
+				
+				<label>Direccio contacte 2</label>
+				<input type='text' name='direccioContacte2' value='<?php echo $row['direccioContacte2'];?>'><br>
 
-				echo "<label>imatgeContacte</label>";
-				echo "<input type='text' name='imatgeContacte' value='" . $row['imatgeContacte'] . "'><br>";
+				<label>Poblacio contacte 2</label>
+				<input type='text' name='poblacioContacte2' value='<?php echo $row['poblacioContacte2'];?>'><br>
 
-				echo "<input type='hidden' value='".$idContacte."' name='idContacte'>";
+				<label>Provincia contacte 2</label>
+				<input type='text' name='provinciaContacte2' value='<?php echo $row['provinciaContacte2'];?>'><br>
 
-				echo "<input type='submit' name='Acceptar'>";
-			}
+				<label>Codi Postal contacte 2</label>
+				<input type='text' name='cpContacte2' value='<?php echo $row['cpContacte2'];?>'><br>
+
+				<label>Pais contacte 2</label>
+				<input type='text' name='paisContacte2' value='<?php echo $row['paisContacte2'];?>'><br>
+
+
+				
+
+				<input type='hidden' value='".$idContacte."' name='idContacte'>
+
+				<input type='submit' name='Acceptar'>
+			<?php }
 		}
 		echo "</form>";
-	?>	
+	?>
+	
+	
+
+	
+	<input type="text" name="ubicacio2Contacte" placeholder="ubicacio2Contacte"><br>
+	Imatge de perfil: <input type="file" name="imatgeContacte"><br>
+	<input type="text" name="poblacioContacte" placeholder="poblacioContacte"><br>
+	<input type="text" name="provinciaContacte" placeholder="provinciaContacte"><br>
+	<input type="text" name="cpContacte" placeholder="cpContacte"><br>
+	<input type="text" name="paisContacte" placeholder="paisContacte"><br><br>
+	<input type="submit" name="Enviar">
+
+
+
+
+
 	<a href="principal.php"><input type="button" value="Tornar"></a>	
 </body>
 </html>
