@@ -16,7 +16,7 @@
 		include("conexion.proc.php");
 		$idContacte = $_REQUEST['idContacte'];
 		$sql = "SELECT * FROM tbl_contactes WHERE idContacte = $idContacte";
-		echo $sql;
+		//echo $sql;
 		$sqlUpdate = mysqli_query($conexion, $sql);
 		// echo $sql;
 		// die();
@@ -37,10 +37,11 @@
 				<input type="hidden" name="telefonContacteold" value="<?php echo $row['telefonContacte']; ?>" />
 
 				<label>Email contacte</label>
-				<input type='text' name='emailContacte' value='<?php echo $row['emailContacte'];?>'><br>
+				<input type='text' name='emailContactenew' value='<?php echo $row['emailContacte'];?>'><br>
+				<input type="hidden" name="emailContacteold" value="<?php echo $row['emailContacte']; ?>" />
 
 				<label>Imatge contacte</label>
-				<input type="file" name="imatgeContacte">
+				<input type="file" name="imatgeContacte"><br>
 
 				Tipus Ubicacio 1 : 
 				<select name="tipusubicacio1">
@@ -48,19 +49,25 @@
 				</select><br>
 
 				<label>Direccio contacte 1</label>
-				<input type='text' name='direccioContacte1' value='<?php echo $row['direccioContacte1'];?>'><br>
+				<input type='text' name='direccioContacte1new' value='<?php echo $row['direccioContacte1'];?>'><br>
+				<input type="hidden" name="direccioContacte1old" value="<?php echo $row['direccioContacte1']; ?>" />
+
 
 				<label>Poblacio contacte 1</label>
-				<input type='text' name='poblacioContacte1' value='<?php echo $row['poblacioContacte1'];?>'><br>
+				<input type='text' name='poblacioContacte1new' value='<?php echo $row['poblacioContacte1'];?>'><br>
+				<input type="hidden" name="poblacioContacte1old" value="<?php echo $row['poblacioContacte1']; ?>" />
 
 				<label>Provincia contacte 1</label>
-				<input type='text' name='provinciaContacte1' value='<?php echo $row['provinciaContacte1'];?>'><br>
+				<input type='text' name='provinciaContacte1new' value='<?php echo $row['provinciaContacte1'];?>'><br>
+				<input type="hidden" name="provinciaContacte1old" value="<?php echo $row['provinciaContacte1']; ?>" />
 
 				<label>Codi Postal contacte 1</label>
-				<input type='text' name='cpContacte1' value='<?php echo $row['cpContacte1'];?>'><br>
+				<input type='text' name='cpContacte1new' value='<?php echo $row['cpContacte1'];?>'><br>
+				<input type="hidden" name="cpContacte1old" value="<?php echo $row['cpContacte1']; ?>" />
 
 				<label>Pais contacte 1</label>
-				<input type='text' name='paisContacte1' value='<?php echo $row['paisContacte1'];?>'><br>
+				<input type='text' name='paisContacte1new' value='<?php echo $row['paisContacte1'];?>'><br>
+				<input type="hidden" name="paisContacte1old" value="<?php echo $row['paisContacte1']; ?>" />
 
 				
 
@@ -84,46 +91,33 @@
 				</select><br>
 				
 				<label>Direccio contacte 2</label>
-				<input type='text' name='direccioContacte2' value='<?php echo $row['direccioContacte2'];?>'><br>
+				<input type='text' name='direccioContacte2new' value='<?php echo $row['direccioContacte2'];?>'><br>
+				<input type="hidden" name="direccioContacte2old" value="<?php echo $row['direccioContacte2']; ?>" /><br>
 
 				<label>Poblacio contacte 2</label>
-				<input type='text' name='poblacioContacte2' value='<?php echo $row['poblacioContacte2'];?>'><br>
+				<input type='text' name='poblacioContacte2new' value='<?php echo $row['poblacioContacte2'];?>'><br>
+				<input type="hidden" name="poblacioContacte2old" value="<?php echo $row['poblacioContacte2']; ?>" /><br>
 
 				<label>Provincia contacte 2</label>
-				<input type='text' name='provinciaContacte2' value='<?php echo $row['provinciaContacte2'];?>'><br>
+				<input type='text' name='provinciaContacte2new' value='<?php echo $row['provinciaContacte2'];?>'><br>
+				<input type="hidden" name="provinciaContacte2old" value="<?php echo $row['provinciaContacte2']; ?>" /><br>
 
 				<label>Codi Postal contacte 2</label>
-				<input type='text' name='cpContacte2' value='<?php echo $row['cpContacte2'];?>'><br>
+				<input type='text' name='cpContacte2new' value='<?php echo $row['cpContacte2'];?>'><br>
+				<input type="hidden" name="cpContacte2old" value="<?php echo $row['cpContacte2']; ?>" /><br>
 
 				<label>Pais contacte 2</label>
-				<input type='text' name='paisContacte2' value='<?php echo $row['paisContacte2'];?>'><br>
+				<input type='text' name='paisContacte2new' value='<?php echo $row['paisContacte2'];?>'><br>
+				<input type="hidden" name="paisContacte2old" value="<?php echo $row['paisContacte2']; ?>" /><br>
 
-
-				
 
 				<input type='hidden' value='".$idContacte."' name='idContacte'>
-
-				<input type='submit' name='Acceptar'>
+				<input type="submit" name="Desa els canvis">
+				<a href="principal.php"><input type="button" value="Tornar"></a>	
 			<?php }
 		}
 		echo "</form>";
 	?>
 	
-	
-
-	
-	<input type="text" name="ubicacio2Contacte" placeholder="ubicacio2Contacte"><br>
-	Imatge de perfil: <input type="file" name="imatgeContacte"><br>
-	<input type="text" name="poblacioContacte" placeholder="poblacioContacte"><br>
-	<input type="text" name="provinciaContacte" placeholder="provinciaContacte"><br>
-	<input type="text" name="cpContacte" placeholder="cpContacte"><br>
-	<input type="text" name="paisContacte" placeholder="paisContacte"><br><br>
-	<input type="submit" name="Enviar">
-
-
-
-
-
-	<a href="principal.php"><input type="button" value="Tornar"></a>	
 </body>
 </html>
