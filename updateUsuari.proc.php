@@ -81,7 +81,7 @@
 
 			$usrantiguo = $_REQUEST['usernameUsuariold'];
 			$updateuser .= " WHERE usernameUsuari = '$usrantiguo'";
-			
+			$_SESSION['canvisok'] = "Els canvis s'han realitzar correctament";
 			mysqli_query($conexion, $updateuser);
 			header("location: principal.php");
 		} else {

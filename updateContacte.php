@@ -3,9 +3,8 @@
 	if(!isset($_SESSION['username'])) {
 	  header('location: index.php');
 	}
-
+	include("conexion.proc.php");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +12,18 @@
 </head>
 <body>
 	<?php
-		include("conexion.proc.php");
+		if(isset($_SESSION['canvisok'])){
+			echo "<script> alert('Los cambios se han realizado correctamente');</script>";
+			unset($_SESSION['canvisok']);
+		}
+		
 		$idContacte = $_REQUEST['idContacte'];
 		$sql = "SELECT * FROM tbl_contactes WHERE idContacte = $idContacte";
 		//echo $sql;
 		$sqlUpdate = mysqli_query($conexion, $sql);
 		// echo $sql;
 		// die();
-
+		
 		echo "<form action='updateContacte.proc.php' method='POST' enctype='multipart/form-data'>";
 		if(mysqli_num_rows($sqlUpdate)>0){	
 			while($row = mysqli_fetch_array($sqlUpdate)){ ?>
@@ -30,7 +33,7 @@
 
 				<label>Cognoms contacte</label>
 				<input type='text' name='cognomsContactenew' value='<?php echo $row['cognomsContacte'];?>'><br>
-				<input type="hidden" name="cognomsContacteold" value="<?php echo $row['nomContacte']; ?>" />
+				<input type="hidden" name="cognomsContacteold" value="<?php echo $row['cognomsContacte']; ?>" />
 
 				<label>Telefon contacte</label>
 				<input type='text' name='telefonContactenew' value='<?php echo $row['telefonContacte'];?>'><br>
@@ -69,9 +72,7 @@
 				<input type='text' name='paisContacte1new' value='<?php echo $row['paisContacte1'];?>'><br>
 				<input type="hidden" name="paisContacte1old" value="<?php echo $row['paisContacte1']; ?>" />
 
-				
-
-				Tipus Ubicacio 2 : <select name="tipusubicacio2"> 
+				Tipus Ubicacio 2 : <select name="tipusUbicacio2new"> 
 					<?php 
 					if ($row['tipusUbicacio2'] == 'feina') { ?>
 						<option value="feina" selected>Feina</option>
@@ -89,7 +90,10 @@
 						<option value="altres">Altres</option>	
 					<?php } ?>
 				</select><br>
-				
+				<input type="hidden" name="tipusUbicacio2old" value="<?php echo $row['tipusUbicacio2']; ?>" /><br>
+
+
+
 				<label>Direccio contacte 2</label>
 				<input type='text' name='direccioContacte2new' value='<?php echo $row['direccioContacte2'];?>'><br>
 				<input type="hidden" name="direccioContacte2old" value="<?php echo $row['direccioContacte2']; ?>" /><br>
@@ -110,8 +114,8 @@
 				<input type='text' name='paisContacte2new' value='<?php echo $row['paisContacte2'];?>'><br>
 				<input type="hidden" name="paisContacte2old" value="<?php echo $row['paisContacte2']; ?>" /><br>
 
+				<input type="hidden" name="idContacte" value="<?php echo $row['idContacte']; ?>" /><br>
 
-				<input type='hidden' value='".$idContacte."' name='idContacte'>
 				<input type="submit" name="Desa els canvis">
 				<a href="principal.php"><input type="button" value="Tornar"></a>	
 			<?php }

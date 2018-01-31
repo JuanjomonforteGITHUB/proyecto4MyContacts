@@ -29,20 +29,23 @@
 
 	//Condicional que si no hay resultados llevara a index.php, si hay resultados hara las sesiones y nos llevara a principal.php
 	if (mysqli_num_rows($result)>0) {
-		$queryusrpaswdd = "SELECT usernameUsuari,contraUsuari FROM tbl_usuari WHERE usernameUsuari= '$usuari' AND contraUsuari='$password'";
+		$queryusrpaswdd = "SELECT idUsuari,usernameUsuari,contraUsuari FROM tbl_usuari WHERE usernameUsuari= '$usuari' AND contraUsuari='$password'";
 		$login=mysqli_query($conexion, $queryusrpaswdd);
 		//Si la consulta devuelve más de 0 registros, es que el usuario existe, por lo tanto, iremos a la página principal de la intranet
 		if(mysqli_num_rows($login)>0){
+			while ($contactosubido=mysqli_fetch_array($login)) {
+				$_SESSION['idUsuari'] = $contactosubido['idUsuari'];
+				//Asignamos las sesiones
+				$_SESSION['loggedin']=true;
+				//Nombre de usuario
+				$_SESSION['username']=$usuari;
+				$_SESSION['start']=time();
+				//Tiempo que tarda en expirar la sesion
+				$_SESSION ['expire']=$_SESSION ['start']+(500*60);
+				//echo "Bienvenido ".$_SESSION ['username'];
+				header("location: principal.php");
+			}	
 			
-			//Asignamos las sesiones
-			$_SESSION['loggedin']=true;
-			//Nombre de usuario
-			$_SESSION['username']=$usuari;
-			$_SESSION['start']=time();
-			//Tiempo que tarda en expirar la sesion
-			$_SESSION ['expire']=$_SESSION ['start']+(500*60);
-			//echo "Bienvenido ".$_SESSION ['username'];
-			header("location: principal.php");
 		} else {
 			//Si cuando hace la consulta no muestra más de 0 resultados significa que el usuario que a introducido mal la contraseña
 			$_SESSION['errorpassword'] = 'Contrasenya incorrecta';

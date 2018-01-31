@@ -27,6 +27,14 @@
 			mysqli_query($conexion, $sql);
 			//echo $sql;
 			$_SESSION['username'] = $usernameUsuari;
+
+			$sql = "SELECT idUsuari FROM tbl_usuari WHERE usernameUsuari='$usernameUsuari'";
+			$queryidusuario = mysqli_query($conexion, $sql);
+			if(mysqli_num_rows($queryidusuario)>0){
+				while ($contactosubido=mysqli_fetch_array($queryidusuario)) {
+					$_SESSION['idUsuari'] = $contactosubido['idUsuari'];
+				}	
+			}
 			header("location: principal.php");
 		} else {
 			$_SESSION['errorContra'] = "Les contrasenyes no coincideixen!";

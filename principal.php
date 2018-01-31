@@ -27,12 +27,16 @@
 
 <header>
   <div class="container">
-    <img src="img/LOGO2.png" class="logo">
+    <a href="principal.php"><img src="img/LOGO2.png" class="logo"></a>
+
       <nav class="nav-collapse">
+
         <ul>
           <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
           <nav class="menu">
+
             <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+
             <label class="menu-open-button" for="menu-open">
               <span class="hamburger hamburger-1"></span>
               <span class="hamburger hamburger-2"></span>
@@ -41,9 +45,19 @@
 
             <a href="updateUsuari.php" class="menu-item"> <i class="fa fa-user"></i> </a>
             <a href="tancarsessio.proc.php" class="menu-item"> <i class="fa fa-power-off"></i> </a>
-            <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
-            <a href="#" class="menu-item"> <i class="fa fa-envelope"></i> </a>
+            <a href="insertContacte.php" class="menu-item"> <i class="fa fa-heart"></i> </a>
+            <a href="#" class="menu-item">				<?php
+											$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
+											$query = mysqli_query($conexion, $mostrarimagen);
+												if (mysqli_num_rows($query)>0) {
+												while ($fotosSubidas=mysqli_fetch_array($query)) {
+													echo "<img class='img-perfil' src='img/$fotosSubidas[imatgeUsuari]'/>";
+												}
+											}
+											?></i> </a>
+
           </nav>
+
           <!-- filters -->
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
               <defs>
@@ -89,67 +103,55 @@
 			</form>
 			<div id="profileCardGrid" class="row row--flex"></div>
 				<?php
-						$saberidusuario = "SELECT * FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
-						$querysaberidusuario = mysqli_query($conexion, $saberidusuario);
-						if (mysqli_num_rows($querysaberidusuario)>0) {
-							while ($contactosubido=mysqli_fetch_array($querysaberidusuario)) {
-								$idusuario = $contactosubido['idUsuari'];
-							}
+					$saberidusuario = "SELECT * FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
+					$querysaberidusuario = mysqli_query($conexion, $saberidusuario);
+					if (mysqli_num_rows($querysaberidusuario)>0) {
+						while ($contactosubido=mysqli_fetch_array($querysaberidusuario)) {
+							$idusuario = $contactosubido['idUsuari'];
 						}
-						echo "<br />";
-						$mostrarcontacto = "SELECT * FROM tbl_contactes WHERE idUsuariContacte = '$idusuario'";
-						$querymostrarcontacto = mysqli_query($conexion, $mostrarcontacto);
-						if (mysqli_num_rows($querymostrarcontacto)>0) {
-							while ($contactosubido=mysqli_fetch_array($querymostrarcontacto)) {
-								echo "<div class='col-md-3'>";
-									echo "<div class='card card--profile card--grid'>";
-										echo "<div class='card__content'>";
-												echo "<div class='card__media'>";
-														echo "<img class='card__img'  src='img/$contactosubido[imatgeContacte]'/>";
+					}
+					echo "<br />";
+					$mostrarcontacto = "SELECT * FROM tbl_contactes WHERE idUsuariContacte = '$idusuario'";
+					$querymostrarcontacto = mysqli_query($conexion, $mostrarcontacto);
+					if (mysqli_num_rows($querymostrarcontacto)>0) {
+						while ($contactosubido=mysqli_fetch_array($querymostrarcontacto)) {
+							echo "<div class='col-md-3'>";
+								echo "<div class='card card--profile card--grid'>";
+									echo "<div class='card__content'>";
+											echo "<div class='card__media'>";
+													echo "<img class='card__img'  src='img/$contactosubido[imatgeContacte]'/>";
+											echo "</div>";
+												echo "<p class='card__name'>" . $contactosubido['nomContacte'] . "</p>";
+												echo "<address class='card__contact'>";
+														echo " <p class='card__contact-item'>";
+															echo " <strong>Email: </strong>". $contactosubido['emailContacte'];
+														echo "</p>";
+														echo " <p class='card__contact-item'>";
+															echo " <strong>Telefon: </strong>". $contactosubido['telefonContacte'];
+														echo "</p>";
+												echo "</address>";
 												echo "</div>";
-													echo "<p class='card__name'>" . $contactosubido['nomContacte'] . "</p>";
-													echo "<address class='card__contact'>";
-															echo " <p class='card__contact-item'>";
-																echo " <strong>Email:</strong>". $contactosubido['emailContacte'];
-															echo "</p>";
-															echo " <p class='card__contact-item'>";
-																echo " <strong>Phone:</strong>". $contactosubido['telefonContacte'];
-															echo "</p>";
-													echo "</address>";
-													echo "</div>";
-													echo "<div class='card__cta'>";
-														echo "<a href='updateContacte.php?idContacte=3' class='card__cta-item btn btn-primary'>";
-														echo "<i class='fa fa-pencil card__cta-icon'></i>";
-														echo "</a>";
-													echo "<a href='' class='card__cta-item btn btn-danger'>";
-														echo "<i class='fa fa-trash card__cta-icon'></i>";
+												echo "<div class='card__cta'>";
+													echo "<a href='updateContacte.php?idContacte=" . $contactosubido['idContacte'] ."' class='card__cta-item btn btn-primary'>";
+													echo "<i class='fa fa-pencil card__cta-icon'></i>";
 													echo "</a>";
-													echo "</div>";
+												echo "<a href='eliminarContacte.proc.php?idContacte=" . $contactosubido['idContacte'] ."' onclick='return funeliminarcontacte();' class='card__cta-item btn btn-danger'>";
+													echo "<i class='fa fa-trash card__cta-icon'></i>";
+												echo "</a>";
 												echo "</div>";
 											echo "</div>";
+										echo "</div>";
 
 						}
-						}
-							$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
-							echo $mostrarimagen;
-							$query = mysqli_query($conexion, $mostrarimagen);
-								if (mysqli_num_rows($query)>0) {
-								while ($fotosSubidas=mysqli_fetch_array($query)) {
-									echo "<img src='img/$fotosSubidas[imatgeUsuari]'/>";
-								}
-							}
-							?>
+					}
+				?>
+
 	</div>
 </div>
 
 
 
-	<br />
-	<a href="eliminarContacte.proc.php">Eliminar contacte</a><br>
-	<a href="eliminarUsuari.proc.php" onclick="funeliminarusuari()">Eliminar usuari</a><br>
-	<a href="updateUsuari.php">Modificar usuari</a><br>
-	<a href="updateContacte.php">Modificar contacte</a><br>
-	<a href="insertContacte.php">Insertar contacte</a><br>
+
 	</script>
 	  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	  <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
