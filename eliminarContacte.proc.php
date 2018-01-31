@@ -6,10 +6,10 @@
 	include("conexion.proc.php");
 
 	// POSAR EN VARIABLES ELS VALOR ENVIATS PER URL
-	$idContacte = $_REQUEST['id'];
+	$idContacte = $_REQUEST['idContacte'];
 
 	// CONSULTA SQL ELIMINAR CONTACTE
-	$sql = "DELETE FROM tbl_contactes WHERE idContacte=7";
-	$deleteContacte = mysqli_query($conexion, $sql);
+	$sql = "DELETE FROM tbl_contactes WHERE idContacte=$idContacte";
+	mysqli_query($conexion, $sql);
 
 	header("location: principal.php");

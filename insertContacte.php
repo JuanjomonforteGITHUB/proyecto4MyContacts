@@ -20,13 +20,14 @@
 		unset($_SESSION['errortipofichero']);
 	}
 	?>
-	<form action="insertContacte.proc.php" method="POST">
+	<form action="insertContacte.proc.php" method="POST" enctype="multipart/form-data">
 		<label style="color: grey">/*Camps obligatoris*/</label><br>
 		<input type="text" name="nomContacte" placeholder="nomContacte" required="required"><br>
 		<input type="text" name="cognomsContacte" placeholder="cognomContacte" required="required"><br>
 		<input type="text" name="telefonContacte" placeholder="telefoContacte" required="required"><br><br><br>
 		<label style="color: grey">/*Camps opcionals*/</label><br>
 		<input type="text" name="emailContacte" placeholder="emailContacte"><br>
+
 		Imatge de perfil: <input type="file" name="imatgeContacte"><br>
 		Tipus Ubicacio 1 : <select name="tipusubicacio1">
 			<option value="casa">Casa</option>
@@ -39,7 +40,7 @@
 		
 
 
-		Tipus Ubicacio 2 : <select name="tipusubicacio2">
+		Tipus Ubicacio 2 : <select name="tipusUbicacio2">
 			<option value="feina">Feina</option>
 			<option value="escola">Escola</option>
 			<option value="altres">Altres</option>

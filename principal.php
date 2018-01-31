@@ -46,7 +46,8 @@
             <a href="updateUsuari.php" class="menu-item"> <i class="fa fa-user"></i> </a>
             <a href="tancarsessio.proc.php" class="menu-item"> <i class="fa fa-power-off"></i> </a>
             <a href="insertContacte.php" class="menu-item"> <i class="fa fa-heart"></i> </a>
-            <a href="#" class="menu-item">				<?php
+            <a href="#" class="menu-item">				
+            	<?php
 											$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
 											$query = mysqli_query($conexion, $mostrarimagen);
 												if (mysqli_num_rows($query)>0) {
@@ -96,8 +97,8 @@
 	<div class="container">
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					Nom:  <input type="text" name="nombre"  class="form-control" >
-					Cognom:  <input type="text" name="apellido"  class="form-control" >
+					Nom:  <input type="text" name="nombre" class="form-control" >
+					Cognom:  <input type="text" name="apellido" class="form-control" >
 				</div>
 				<button type="submit" class="btn btn-default">BUSCAR</button>
 			</form>
@@ -135,7 +136,7 @@
 													echo "<a href='updateContacte.php?idContacte=" . $contactosubido['idContacte'] ."' class='card__cta-item btn btn-primary'>";
 													echo "<i class='fa fa-pencil card__cta-icon'></i>";
 													echo "</a>";
-												echo "<a href='eliminarContacte.proc.php?idContacte=" . $contactosubido['idContacte'] ."' onclick='return funeliminarcontacte();' class='card__cta-item btn btn-danger'>";
+												echo "<a onclick='return funeliminarcontacte();' href='eliminarContacte.proc.php?idContacte=" . $contactosubido['idContacte'] ."' class='card__cta-item btn btn-danger'>";
 													echo "<i class='fa fa-trash card__cta-icon'></i>";
 												echo "</a>";
 												echo "</div>";

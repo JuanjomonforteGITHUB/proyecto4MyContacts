@@ -67,7 +67,12 @@ function funeliminarusuari() {
     confirm("Estas segur que vols donar-te de baixa de MyContacts?");
 }
 
-
 function funeliminarcontacte() {
-    confirm("Estas segur que vols esborrar aquest contacte de MyContacts?");
+    var agree= confirm("Estas segur que vols esborrar aquest contacte de MyContacts?");
+    if (agree) {
+        return true;
+        
+    } else {
+        return false;
+    }
 }

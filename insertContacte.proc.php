@@ -6,21 +6,28 @@
 	include("conexion.proc.php");
 
 	// POSAR EN VARIABLES ELS VALOR ENVIATS PER URL
-
+	$idUsuari = $_SESSION['idUsuari'];
 	$nomContacte = $_REQUEST['nomContacte'];
 	$cognomsContacte = $_REQUEST['cognomsContacte'];
-	$telefonContacte = $_REQUEST['telefonContacte'];
 	$emailContacte = $_REQUEST['emailContacte'];
+	$telefonContacte = $_REQUEST['telefonContacte'];
+
 	$tipusUbicacio1 = $_REQUEST['tipusubicacio1'];
-	$ubicacio1Contacte = $_REQUEST['ubicacio1Contacte'];
-	$tipusUbicacio2 = $_REQUEST['tipusubicacio2'];
-	$ubicacio2Contacte = $_REQUEST['ubicacio2Contacte'];
-	$imatgeContacte = $_REQUEST['imatgeContacte'];
-	$direccioContacte = $_REQUEST['direccioContacte'];
-	$poblacioContacte = $_REQUEST['poblacioContacte'];
-	$provinciaContacte = $_REQUEST['provinciaContacte'];
-	$cpContacte = $_REQUEST['cpContacte'];
-	$paisContacte = $_REQUEST['paisContacte'];
+	$direccioContacte1 = $_REQUEST['direccioContacte1'];
+	$poblacioContacte1 = $_REQUEST['poblacioContacte1'];
+	$provinciaContacte1 = $_REQUEST['provinciaContacte1'];
+	$cpContacte1 = $_REQUEST['cpContacte1'];
+	$paisContacte1 = $_REQUEST['paisContacte1'];
+
+	$tipusUbicacio2 = $_REQUEST['tipusUbicacio2'];
+	$direccioContacte2 = $_REQUEST['direccioContacte2'];
+	$poblacioContacte2 = $_REQUEST['poblacioContacte2'];
+	$provinciaContacte2 = $_REQUEST['provinciaContacte2'];
+	$cpContacte2 = $_REQUEST['cpContacte2'];
+	$paisContacte2 = $_REQUEST['paisContacte2'];	
+	
+
+
 
 	$queryusuario="SELECT * FROM tbl_usuari WHERE usernameUsuari = '". $_SESSION['username']. "'";
 	$result=mysqli_query($conexion, $queryusuario);
@@ -30,13 +37,15 @@
 			$idUsuari = $resultatusuari['idUsuari'];
 		}
 	}
-
+	echo "<pre>";
+	var_dump($_FILES);
+	echo "</pre>";
 	if($_FILES["imatgeContacte"]['name'] != "") {
 		if(($_FILES["imatgeContacte"]["type"] == "image/png") || ($_FILES["imatgeContacte"]["type"] == "image/jpg") || ($_FILES["imatgeContacte"]["type"] == "image/jpeg")) {
 			$imatgeContacte = uniqid("")."-".$_FILES["imatgeContacte"]["name"];
 			$move = "img/";
 			if(move_uploaded_file($_FILES["imatgeContacte"]["tmp_name"], $move.$imatgeContacte)) {
-				$sql = "INSERT INTO tbl_contactes (idUsuariContacte,nomContacte,cognomsContacte,emailContacte,telefonContacte,tipusUbicacio1,ubicacio1Contacte,tipusUbicacio2,ubicacio2Contacte,imatgeContacte,direccioContacte,poblacioContacte,provinciaContacte,cpContacte,paisContacte) VALUES ('$idUsuari','$nomContacte','$cognomsContacte','$emailContacte','$telefonContacte','$tipusUbicacio1','$ubicacio1Contacte','$tipusUbicacio2','$ubicacio2Contacte','$imatgeContacte','$direccioContacte','$poblacioContacte','$provinciaContacte','$cpContacte','$paisContacte')";
+				$sql = "INSERT INTO `tbl_contactes`(`idUsuariContacte`, `nomContacte`, `cognomsContacte`, `emailContacte`, `telefonContacte`, `imatgeContacte`, `tipusUbicacio1`, `direccioContacte1`, `poblacioContacte1`, `provinciaContacte1`, `cpContacte1`, `paisContacte1`, `tipusUbicacio2`, `direccioContacte2`, `provinciaContacte2`, `poblacioContacte2`, `cpContacte2`, `paisContacte2`) VALUES ('$idUsuari', '$nomContacte', '$cognomsContacte', '$emailContacte', '$telefonContacte', '$imatgeContacte', '$tipusUbicacio1', '$direccioContacte1', '$poblacioContacte1', '$provinciaContacte1', '$cpContacte1', '$paisContacte1', '$tipusUbicacio2', '$direccioContacte2', '$provinciaContacte2', '$poblacioContacte2', '$cpContacte2', '$paisContacte2')";
 			} else {
 				$_SESSION['errorsubidafichero'] = 'ERROR!!! EL FICHERO NO SE HA PODIDO SUBIR';
 				header("location: updateUsuari.php");
@@ -48,11 +57,12 @@
 			die("");
 		}
 	} else {
-		$sql = "INSERT INTO tbl_contactes (idUsuariContacte,nomContacte,cognomsContacte,emailContacte,telefonContacte,tipusUbicacio1,ubicacio1Contacte,tipusUbicacio2,ubicacio2Contacte,direccioContacte,poblacioContacte,provinciaContacte,cpContacte,paisContacte) VALUES ('$idUsuari','$nomContacte','$cognomsContacte','$emailContacte','$telefonContacte','$tipusUbicacio1','$ubicacio1Contacte','$tipusUbicacio2','$ubicacio2Contacte','$direccioContacte','$poblacioContacte','$provinciaContacte','$cpContacte','$paisContacte')";
+		$sql = "INSERT INTO tbl_contactes (INSERT INTO `tbl_contactes`(`idUsuariContacte`, `nomContacte`, `cognomsContacte`, `emailContacte`, `telefonContacte`, `tipusUbicacio1`, `direccioContacte1`, `poblacioContacte1`, `provinciaContacte1`, `cpContacte1`, `paisContacte1`, `tipusUbicacio2`, `direccioContacte2`, `provinciaContacte2`, `poblacioContacte2`, `cpContacte2`, `paisContacte2`) VALUES ('$idUsuari', '$nomContacte', '$cognomsContacte', '$emailContacte', '$telefonContacte', '$tipusUbicacio1', '$direccioContacte1', '$poblacioContacte1', '$provinciaContacte1', '$cpContacte1', '$paisContacte1', '$tipusUbicacio2', '$direccioContacte2', '$provinciaContacte2', '$poblacioContacte2', '$cpContacte2', '$paisContacte2')";
 	}
-
-	// CONSULTA SQL INSERTAR DADES CONTACTES
-	$sqlInsertar = mysqli_query($conexion, $sql);
 	// echo $sql;
+	// die("");
+	// CONSULTA SQL INSERTAR DADES CONTACTES
+	mysqli_query($conexion, $sql);
+	
 	header("location: principal.php");		
 	
