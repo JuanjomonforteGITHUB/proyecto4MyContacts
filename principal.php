@@ -30,10 +30,7 @@
     <img src="img/LOGO2.png" class="logo">
       <nav class="nav-collapse">
         <ul>
-
-
           <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
           <nav class="menu">
             <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
             <label class="menu-open-button" for="menu-open">
@@ -73,13 +70,13 @@
 
 </header>
 
-
-
-
 <!-- CUERPO  -->
 
 <div id="map"></div>
 
+
+
+<!-- filtro  -->
 <body>
 	<div class="wrapper">
 	<div class="container">
@@ -90,66 +87,82 @@
 				</div>
 				<button type="submit" class="btn btn-default">BUSCAR</button>
 			</form>
-
 			<div id="profileCardGrid" class="row row--flex"></div>
+				<?php
+						$saberidusuario = "SELECT * FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
+						$querysaberidusuario = mysqli_query($conexion, $saberidusuario);
+						if (mysqli_num_rows($querysaberidusuario)>0) {
+							while ($contactosubido=mysqli_fetch_array($querysaberidusuario)) {
+								$idusuario = $contactosubido['idUsuari'];
+							}
+						}
+						echo "<br />";
+						$mostrarcontacto = "SELECT * FROM tbl_contactes WHERE idUsuariContacte = '$idusuario'";
+						$querymostrarcontacto = mysqli_query($conexion, $mostrarcontacto);
+						if (mysqli_num_rows($querymostrarcontacto)>0) {
+							while ($contactosubido=mysqli_fetch_array($querymostrarcontacto)) {
+								echo "<div class='col-md-3'>";
+									echo "<div class='card card--profile card--grid'>";
+										echo "<div class='card__content'>";
+												echo "<div class='card__media'>";
+														echo "<img class='card__img'  src='img/$contactosubido[imatgeContacte]'/>";
+												echo "</div>";
+													echo "<p class='card__name'>" . $contactosubido['nomContacte'] . "</p>";
+													echo "<address class='card__contact'>";
+															echo " <p class='card__contact-item'>";
+																echo " <strong>Email:</strong>". $contactosubido['emailContacte'];
+															echo "</p>";
+															echo " <p class='card__contact-item'>";
+																echo " <strong>Phone:</strong>". $contactosubido['telefonContacte'];
+															echo "</p>";
+													echo "</address>";
+													echo "</div>";
+													echo "<div class='card__cta'>";
+														echo "<a href='updateContacte.php?idContacte=3' class='card__cta-item btn btn-primary'>";
+														echo "<i class='fa fa-pencil card__cta-icon'></i>";
+														echo "</a>";
+													echo "<a href='' class='card__cta-item btn btn-danger'>";
+														echo "<i class='fa fa-trash card__cta-icon'></i>";
+													echo "</a>";
+													echo "</div>";
+												echo "</div>";
+											echo "</div>";
+
+						}
+						}
+							$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
+							echo $mostrarimagen;
+							$query = mysqli_query($conexion, $mostrarimagen);
+								if (mysqli_num_rows($query)>0) {
+								while ($fotosSubidas=mysqli_fetch_array($query)) {
+									echo "<img src='img/$fotosSubidas[imatgeUsuari]'/>";
+								}
+							}
+							?>
 	</div>
 </div>
 
 
-	<?php echo $_SESSION['username'];
-		$mostrarimagen = "SELECT imatgeUsuari FROM tbl_usuari WHERE usernameUsuari = '" . $_SESSION['username'] . "'";
-		echo $mostrarimagen;
-		$query = mysqli_query($conexion, $mostrarimagen);
-	    if (mysqli_num_rows($query)>0) {
-			while ($fotosSubidas=mysqli_fetch_array($query)) {
-				echo "<img src='img/$fotosSubidas[imatgeUsuari]'/>";
-			}
-		}
-	?>
+
 	<br />
 	<a href="eliminarContacte.proc.php">Eliminar contacte</a><br>
 	<a href="eliminarUsuari.proc.php" onclick="funeliminarusuari()">Eliminar usuari</a><br>
 	<a href="updateUsuari.php">Modificar usuari</a><br>
 	<a href="updateContacte.php">Modificar contacte</a><br>
 	<a href="insertContacte.php">Insertar contacte</a><br>
-
-	<script id="cardProfileTemplate" type="text/x-handlebars-template">
-	    {{#each results}}
-	        <div class="col-md-3">
-	            <div class="card card--profile card--grid">
-	                <div class="card__content">
-	                    <div class="card__media">
-	                        <img class="card__img" src="{{picture.large}}" alt="" />
-	                    </div>
-	                    <p class="card__name">{{name.first}} {{name.last}}</p>
-	                    <address class="card__contact">
-	                        <p class="card__contact-item">
-	                            <strong>Email:</strong> {{email}}
-	                        </p>
-	                        <p class="card__contact-item">
-	                            <strong>Phone:</strong> {{phone}}
-	                        </p>
-	                    </address>
-	                </div>
-
-	                <div class="card__cta">
-	                    <a href="updateContacte.php?idContacte=3" class="card__cta-item btn btn-primary">
-	                        <i class="fa fa-pencil card__cta-icon"></i>
-	                    </a>
-
-	                    <a href="" class="card__cta-item btn btn-danger">
-	                        <i class="fa fa-trash card__cta-icon"></i>
-	                    </a>
-	                </div>
-	            </div>
-	        </div>
-	    {{/each}}
 	</script>
 	  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	  <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
 	  <script  src="js/principal.js"></script>
 	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUzkXGzz6VCBaYBUPXD3uTI8efCkFSX2k&callback=initMap"
 	  async defer></script>
+
+
+
+
+
+
+
 	<!-- mapa -->
   <script>
     function initMap() {
